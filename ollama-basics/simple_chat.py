@@ -14,7 +14,6 @@ def extract_think_sections(text: str):
     else:
         return None, text.strip()  # If no <think> tags are found, return the full text as "after_think"
 
-
 def chat_prompt(message):
     global chat_history
 
@@ -36,10 +35,12 @@ def chat_prompt(message):
 
     return response['message']['content']
 
+# MAIN LOOP
 while True:
     user_input = input('You: ')
     ia_response = chat_prompt(user_input)
     thinking, text_response = extract_think_sections(ia_response)
+
     print(colorama.Fore.CYAN + "IA: ")
     print(colorama.Style.DIM + thinking)
     print(colorama.Style.NORMAL + text_response + colorama.Style.RESET_ALL)
